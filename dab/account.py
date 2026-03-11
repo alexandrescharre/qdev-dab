@@ -1,3 +1,5 @@
+import sys
+
 def checkWithdrawal(balance, amount):
   return False
 
@@ -13,3 +15,13 @@ class Account:
   def deposit(self, amount):
     self.balance += amount
     print("Deposit complete. New balance is %.2f" % self.balance)
+
+  def withdraw(self, amount):
+    try:
+      if checkWithdrawal(self.balance, amount):
+        self.balance -= amount
+        print("Withdrawal complete. New balance is %.2f" % self.balance)
+      else:
+        print("Withdrawal refused! Current balance is %.2f" % self.balance)
+    except ValueError:
+      print("Error: unable to withdraw a negative amount!", file=sys.stderr)
